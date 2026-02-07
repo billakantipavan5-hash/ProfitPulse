@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Money Blog | Earn Online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<style>
+body{font-family:Arial;margin:0;background:#f4f4f4}
+header{background:#242d43;color:#fff;text-align:center;padding:20px;font-family: 'Times New Roman', Times, serif;}
+nav{background:#4b4f6c;text-align:center;padding:10px}
+nav a{color:#fff;margin:10px;text-decoration:none;font-weight:bold}
+.lang-btn{float:right;background:#fff;color:#4CAF50;border:none;border-radius:5px;cursor:pointer;font-weight:bold}
+.container{max-width:1000px;margin:auto;padding:20px}
+.post{background:#fff;padding:20px;margin-bottom:20px;border-radius:8px}
+footer{background:#0cc7f6;color:#fff;text-align:center;padding:15px}
+#pavan{
+    font-size: 35px;
+}
+</style>
+</head>
+<body>
+
+<header>
+
+<h1 id="pavan"> Profit  pulse</h1>
+<p id="tagline">Learn & Earn Online</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<button class="lang-btn" onclick="toggleLang()">తెలుగు</button>
+</nav>
+
+<div class="container" id="blogContainer"></div>
+
+
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "PROJECT_ID.firebaseapp.com",
+  projectId: "PROJECT_ID",
+  storageBucket: "PROJECT_ID.appspot.com",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+let isEnglish = true;
+
+function toggleLang(){
+    isEnglish = !isEnglish;
+    loadPosts();
+    document.querySelector(".lang-btn").innerText = isEnglish ? "తెలుగు" : "English";
+    document.getElementById("tagline").innerText = isEnglish ? "Learn & Earn Online" : "ఆన్‌లైన్ ద్వారా సంపాదించడం నేర్చుకోండి";
+}
+
+function loadPosts(){
+    const container = document.getElementById("blogContainer");
+    container.innerHTML = "";
+    db.collection("posts").orderBy("timestamp","desc").get().then(snapshot=>{
+        snapshot.forEach(doc=>{
+            const data = doc.data();
+            const div = document.createElement("div");
+            div.className = "post";
+            div.innerHTML = `<h2>${isEnglish ? data.titleEn : data.titleTe}</h2>
+                             <p>${isEnglish ? data.contentEn : data.contentTe}</p>`;
+            container.appendChild(div);
+        });
+    });
+}
+
+// Initial load
+loadPosts();
+
+</script>
+<div class="container">
+
+    <div class="container">
+
+<div class="post">
+<h2 id="post1-title">How to Earn Money Online For Beginers</h2>
+<p id="post1-desc">
+Learn genuine and safe ways to earn money online even if you have no experience
+</p>
+<a href="post.html" class="read-more-btn">Read More →</a>
+</div>
+<div class="post">
+<h2 id="post1-title">How to Earn Money Online For Beginers</h2>
+<p id="post1-desc">
+Learn genuine and safe ways to earn money online even if you have no experience
+</p>
+<a href="post1.html" class="read-more-btn">Read More →</a>
+</div>
+
+
+
+<div class="post">
+<h2 id="post2-title">Best Online Jobs for Students</h2>
+<p id="post2-desc">
+Students can earn part-time income online without affecting their studies</p>
+<a href="post2.html" class="read-more-btn">Read More →</a>
+</div>
+<div class="post">
+<h2 id="post3-title">Blogging for Passive Income</h2>
+<p id="post3-desc">
+Blogging is one of the most reliable ways to generate passive income online.</p>
+<a href="post3.html" class="read-more-btn">Read More →</a>
+</div>
+<div class="post">
+<h2 id="post4-title">Freelancing – Turn Skills into Income</h2>
+<p id="post4-desc">
+Freelancing allows individuals to offer services online and earn money on a project basis.</p>
+<a href="post4.html" class="read-more-btn">Read More →</a>
+</div>
+<div class="post">
+<h2 id="post5-title">Affiliate Marketing Explained</h2>
+<p id="post5-desc">
+Affiliate marketing is a method of earning money by promoting other companies’</p>
+<a href="post5.html" class="read-more-btn">Read More →</a>
+</div>
+<div class="post">
+<h2 id="post6-title">How Google AdSense Works</h2>
+<p id="post6-desc">
+Google AdSense is an advertising program that allows website owners to earn money.</p>
+<a href="post6.html" class="read-more-btn">Read More →</a>
+</div>
+<div class="post">
+<h2 id="post7-title">Avoiding Online Scams</h2>
+<p id="post7-desc">
+While earning online is real, scams are common. Beginners should be cautious when choosing opportunities.</p>
+<a href="post7.html" class="read-more-btn">Read More →</a>
+</div>
+<div class="post">
+<h2 id="post8-title">Content Writing as a career</h2>
+<p id="post8-desc">
+Content writing is a high-demand skill in the digital world. Businesses need writers for blogs, websites, and marketing materials.</p>
+<a href="post8.html" class="read-more-btn">Read More →</a>
+</div>
+<div class="post">
+<h2 id="post9-title">YouTube for Online Income</h2>
+<p id="post9-desc">
+YouTube is a powerful platform for earning money online. Creators earn through ads, sponsorships, and affiliate links.</p>
+<a href="post9.html" class="read-more-btn">Read More →</a>
+</div>
+<div class="post">
+<h2 id="post10-title">Digital Marketing Basics</h2>
+<p id="post10-desc">
+Digital marketing includes SEO, social media, and email marketing. These skills are highly valuable.</p>
+<a href="post10.html" class="read-more-btn">Read More →</a>
+</div>
+
+</div>
+<footer>
+<p>© 2026 Profit Pulse | <a href="privacy policy.html">Privacy Policy</a>
+</p>
+</footer>
+</body>
+</html>
